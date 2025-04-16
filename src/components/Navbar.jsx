@@ -37,7 +37,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className="hover:text-brand-accent transition-colors duration-200 font-semibold text-base px-1"
+              className="transition-colors duration-200 font-semibold text-base px-1"
             >
               {link.name}
             </Link>
@@ -50,7 +50,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className="block py-2 px-2 text-gray-800 hover:text-brand-accent text-lg font-medium rounded transition-colors duration-150"
+              className="block py-2 px-2 text-gray-800 text-lg font-medium rounded transition-colors duration-150"
               onClick={() => setOpen(false)}
             >
               {link.name}

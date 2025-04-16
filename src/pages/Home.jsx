@@ -17,7 +17,7 @@ export default function Home() {
           <p className="text-base text-gray-500 mb-5">
             Empowering parents and carers to have a voice and navigate SEND processes through awareness, information and confidence training.
           </p>
-          <a href="/about" className="inline-block px-6 py-2 rounded-full bg-brand-primary text-white font-semibold shadow hover:bg-brand-accent transition-all duration-200 text-lg mt-2 focus:outline-none focus:ring-2 focus:ring-brand-primary/50">
+          <a href="/about" className="inline-block px-6 py-2 rounded-full bg-brand-primary text-white font-semibold shadow transition-all duration-200 text-lg mt-2 focus:outline-none focus:ring-2 focus:ring-brand-primary/50">
             Learn More
           </a>
         </div>
@@ -44,8 +44,8 @@ export default function Home() {
           <p>Email: <a href="mailto:info@livpac.org.uk" className="font-semibold hover:underline">info@livpac.org.uk</a></p>
         </div>
         <div className="flex space-x-4 mt-4 justify-center">
-          <a href="#" aria-label="Twitter" className="text-brand-primary hover:text-brand-accent transition-colors text-2xl"><i className="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Facebook" className="text-brand-primary hover:text-brand-accent transition-colors text-2xl"><i className="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Twitter" className="text-brand-primary transition-colors text-2xl"><i className="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook" className="text-brand-primary transition-colors text-2xl"><i className="fab fa-facebook"></i></a>
         </div>
       </section>
     </main>

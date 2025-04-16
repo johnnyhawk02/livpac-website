@@ -16,7 +16,7 @@ export default function Policies() {
           <li><a href="#" className="font-semibold hover:underline">Constitution & Governance</a></li>
           <li><a href="#" className="font-semibold hover:underline">And more (coming soon)</a></li>
         </ul>
-        <div className="bg-brand-primary/10 border-l-4 border-brand-primary p-4 mt-4">
+        <div className="bg-brand-magenta/10 border-l-4 border-brand-magenta p-4 mt-4">
           <strong>Need a document?</strong> Please <a href="/contact" className="underline">contact us</a> to request copies of our policies.
         </div>
       </section>
