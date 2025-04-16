@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/livpaclogo.png";
+import logo from "../assets/livpac logo no text.png";
 
 export default function Home() {
   return (
