@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -15,48 +14,45 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
   return (
-    <nav className="bg-white shadow sticky top-0 z-50">
-      <motion.div initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, type: "spring" }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link to="/" className="font-bold text-lg text-indigo-700">LivPaC</Link>
+    <nav className="bg-white shadow navbar sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between h-16">
+        <Link to="/" className="font-extrabold text-xl tracking-tight text-indigo-700">LivPaC</Link>
         <button
-          className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="md:hidden flex items-center justify-center w-11 h-11 p-0 rounded-lg border border-indigo-100 bg-white shadow focus:outline-none focus:ring-2 focus:ring-indigo-400"
           aria-label="Toggle navigation"
           onClick={() => setOpen((o) => !o)}
         >
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-700">
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
           </svg>
         </button>
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="hover:text-indigo-600 transition-colors duration-200 font-medium relative group"
+              className="hover:text-indigo-600 transition-colors duration-200 font-semibold text-base relative group px-1"
             >
-              <span className="group-hover:underline group-hover:decoration-2 transition-all duration-200">{link.name}</span>
+              <span className="group-hover:border-b-2 group-hover:border-indigo-500 pb-0.5 transition-all duration-200">{link.name}</span>
             </Link>
           ))}
         </div>
-      </motion.div>
+      </div>
       {open && (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="md:hidden px-2 pb-2 bg-white border-t">
+        <div className="md:hidden px-3 pb-3 bg-white border-t shadow-lg rounded-b-xl mt-2 animate-fade-in">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="block py-2 text-gray-700 hover:text-indigo-600 transition-colors duration-150"
+              className="block py-2 px-2 text-gray-800 hover:text-indigo-600 text-lg font-medium rounded transition-colors duration-150"
               onClick={() => setOpen(false)}
             >
               {link.name}
             </Link>
           ))}
-        </motion.div>
+        </div>
       )}
     </nav>
   );

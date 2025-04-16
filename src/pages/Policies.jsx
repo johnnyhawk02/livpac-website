@@ -1,22 +1,25 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 export default function Policies() {
   return (
-    <section className="max-w-2xl mx-auto space-y-6">
-      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-2xl font-bold text-indigo-700 mb-2">Policies</motion.h1>
-      <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }} className="text-gray-700">LivPaC is committed to transparency and good governance. Here you will find our key organizational policies and governance documents.</motion.p>
-      <motion.ul initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.7, type: "spring" }} className="list-disc ml-6 text-gray-700">
-        <li>Safeguarding Policy</li>
-        <li>Data Protection & Privacy Policy</li>
-        <li>Complaints Procedure</li>
-        <li>Code of Conduct</li>
-        <li>Constitution & Governance</li>
-        <li>And more (coming soon)</li>
-      </motion.ul>
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.7, type: "spring" }} className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
-        <strong>Need a document?</strong> Please <a href="/contact" className="text-indigo-600 underline">contact us</a> to request copies of our policies.
-      </motion.div>
-    </section>
+    <main className="max-w-2xl mx-auto pt-6 px-4">
+      <section className="card mb-8">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-indigo-700 mb-3 leading-tight tracking-tight">Policies</h1>
+        <p className="text-lg text-slate-600 mb-4 leading-relaxed font-medium">
+          Our key policies for transparency, safeguarding, and best practice.
+        </p>
+        <ul className="list-disc ml-6 space-y-2 text-slate-700">
+          <li><a href="#" className="font-semibold hover:underline">Safeguarding Policy</a></li>
+          <li><a href="#" className="font-semibold hover:underline">Data Protection & Privacy Policy</a></li>
+          <li><a href="#" className="font-semibold hover:underline">Complaints Procedure</a></li>
+          <li><a href="#" className="font-semibold hover:underline">Code of Conduct</a></li>
+          <li><a href="#" className="font-semibold hover:underline">Constitution & Governance</a></li>
+          <li><a href="#" className="font-semibold hover:underline">And more (coming soon)</a></li>
+        </ul>
+        <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+          <strong>Need a document?</strong> Please <a href="/contact" className="text-indigo-600 underline">contact us</a> to request copies of our policies.
+        </div>
+      </section>
+    </main>
   );
 }
