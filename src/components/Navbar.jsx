@@ -33,9 +33,9 @@ export default function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className="hover:text-indigo-600 transition-colors duration-200 font-semibold text-base relative group px-1"
+              className="hover:text-indigo-600 transition-colors duration-200 font-semibold text-base px-1"
             >
-              <span className="group-hover:border-b-2 group-hover:border-indigo-500 pb-0.5 transition-all duration-200">{link.name}</span>
+              {link.name}
             </Link>
           ))}
         </div>
