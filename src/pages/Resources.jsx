@@ -8,12 +8,62 @@ export default function Resources() {
         <p className="text-lg text-slate-600 mb-4 leading-relaxed font-medium">
           Helpful links, guides, and downloadable materials for families of children and young people with SEND.
         </p>
-        <ul className="list-disc ml-6 space-y-2 text-slate-700 text-lg">
-          <li><a href="#" className="font-semibold hover:underline">Liverpool SEND Local Offer</a></li>
-          <li><a href="#" className="font-semibold hover:underline">Parent Carer Support Guide</a></li>
-          <li><a href="#" className="font-semibold hover:underline">EHCP Information Pack</a></li>
-          <li><a href="#" className="font-semibold hover:underline">Useful Contacts</a></li>
-        </ul>
+        {/* Liverpool-Specific Resources */}
+        <h2 className="text-2xl font-bold text-indigo-600 mt-6 mb-3">Liverpool-Specific Resources</h2>
+        <div className="space-y-6 mb-8">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://fsd.liverpool.gov.uk/kb5/liverpool/fsd/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Liverpool SEND Local Offer
+            </a>
+            <p className="text-slate-700 mt-1">Comprehensive local directory of services and support for children and young people with SEND in Liverpool.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://livpac.org.uk/" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              LivPaC (Liverpool Parent and Carers Forum)
+            </a>
+            <p className="text-slate-700 mt-1">A community-led organization offering support, information, and advocacy for families of children with SEND in Liverpool.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://www.knowsleyinfo.co.uk/categories/knowsley-send-local-offer" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Knowsley SEND Local Offer
+            </a>
+            <p className="text-slate-700 mt-1">Information on local services and support for SEND children and their families in Knowsley.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://fisd.liverpool.gov.uk/" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Liverpool Family Information & SEND Directory (FISD)
+            </a>
+            <p className="text-slate-700 mt-1">Comprehensive directory offering details on family services, childcare providers, and SEND support in Liverpool.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://www.seftondirectory.com/kb5/sefton/directory/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Sefton SEND Local Offer
+            </a>
+            <p className="text-slate-700 mt-1">Comprehensive directory of services and support for children and young people with SEND in Sefton.</p>
+          </div>
+        </div>
+        {/* Key National Resources */}
+        <h2 className="text-2xl font-bold text-indigo-600 mt-8 mb-3">Key National Resources</h2>
+        <div className="space-y-6">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://www.gov.uk/government/publications/send-guide-for-parents-and-carers" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Parent Carer Support Guide
+            </a>
+            <p className="text-slate-700 mt-1">Government-issued guide explaining the SEND system for parents and carers.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://www.gov.uk/children-with-special-educational-needs/extra-SEN-help" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              EHCP Information Pack
+            </a>
+            <p className="text-slate-700 mt-1">Overview of EHCPs – what they are, how to apply, and your rights.</p>
+          </div>
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <a href="https://www.barnardossendiass.org.uk/liverpool-and-knowsley-sendiass/useful-contacts/" target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-semibold hover:underline text-lg">
+              Useful Contacts
+            </a>
+            <p className="text-slate-700 mt-1">Directory of local and national organizations that support families with SEND needs.</p>
+          </div>
+        </div>
       </section>
     </main>
   );
