@@ -74,4 +74,4 @@ export default function Gallery() {
       </div>
     </main>
   );
-} 
+} // EMERGENCY FIX
