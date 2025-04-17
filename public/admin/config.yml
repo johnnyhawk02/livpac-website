@@ -27,5 +27,5 @@ collections:
     format: "frontmatter" # Specifies that files have frontmatter
     fields: # The fields for each news post
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publication Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+      - { label: "Publication Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Body", name: "body", widget: "markdown" } 
