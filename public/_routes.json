@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/*", "/emergency.html"], 
+  "include": ["/*"], 
   "exclude": ["/admin/*"]
 } 
