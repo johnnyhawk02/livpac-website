@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/livpac logo no text.png";
+import logo from "../assets/images/livpac logo no text.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
-  { name: "Resources", path: "/resources" },
   { name: "Events Calendar", path: "/events" },
+  { name: "Gallery", path: "/gallery" },
   { name: "Social News", path: "/news" },
+  { name: "Resources", path: "/resources" },
   { name: "Policies", path: "/policies" },
   { name: "Contact", path: "/contact" },
 ];

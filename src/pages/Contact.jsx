@@ -3,7 +3,7 @@ import React from "react";
 export default function Contact() {
   return (
     <main className="min-h-screen pb-8">
-      <section className="card mb-8">
+      <section className="card mt-8 mb-8">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-3 leading-tight tracking-tight">Contact</h1>
         <p className="text-lg text-gray-600 mb-4 leading-relaxed font-medium">
           Get in touch with LivPaC for support, advice, or to join our community.

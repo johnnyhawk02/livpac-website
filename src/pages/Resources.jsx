@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Resources() {
   return (
-    <main className="max-w-2xl mx-auto pt-6 px-4 min-h-screen pb-8">
-      <section className="card mb-8">
+    <main className="min-h-screen pb-8">
+      <section className="card mt-8 mb-8">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-3 leading-tight tracking-tight">Resources</h1>
         <p className="text-lg text-gray-600 mb-4 leading-relaxed font-medium">
           Helpful links, guides, and downloadable materials for families of children and young people with SEND.
@@ -16,12 +16,6 @@ export default function Resources() {
               Liverpool SEND Local Offer
             </a>
             <p className="text-gray-700 mt-1">Comprehensive local directory of services and support for children and young people with SEND in Liverpool.</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://livpac.org.uk/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
-              LivPaC (Liverpool Parent and Carers Forum)
-            </a>
-            <p className="text-gray-700 mt-1">A community-led organization offering support, information, and advocacy for families of children with SEND in Liverpool.</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <a href="https://www.knowsleyinfo.co.uk/categories/knowsley-send-local-offer" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">

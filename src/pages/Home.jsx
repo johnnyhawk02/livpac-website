@@ -1,11 +1,13 @@
 import React from "react";
-import logo from "../assets/livpac logo no text.png";
+import logo from "../assets/images/livpac logo no text.png";
 
 export default function Home() {
   return (
     <main className="min-h-screen pb-8">
+      {/* Removed Introductory Text Section */}
+
       {/* Hero Section */}
-      <section className="max-w-2xl mx-auto mt-8 mb-10 px-4">
+      <section className="mt-8 mb-10 px-4">
         <div className="card mb-8 text-center shadow-md rounded-xl bg-white">
           <img src={logo} alt="LivPaC Logo" className="mx-auto mb-5 w-28 h-28 object-contain drop-shadow" />
           <h1 className="text-4xl sm:text-5xl font-extrabold text-brand-primary mb-2 leading-tight tracking-tight">
@@ -22,8 +24,9 @@ export default function Home() {
           </a>
         </div>
       </section>
+
       {/* Services Section */}
-      <section className="card max-w-2xl mx-auto mb-8 px-4 py-6 rounded-lg shadow bg-white">
+      <section className="card mx-auto mb-8 px-4 py-6 rounded-lg shadow bg-white">
         <div className="flex items-center mb-2">
           <svg className="w-7 h-7 text-brand-primary mr-2" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11c0-1.657-3-3-3-3s-3 1.343-3 3a3 3 0 006 0zm0 0c0-1.657 3-3 3-3s3 1.343 3 3a3 3 0 01-6 0z" /></svg>
           <h2 className="text-2xl font-bold text-brand-primary tracking-tight">Our Services</h2>
@@ -36,7 +39,7 @@ export default function Home() {
         </ul>
       </section>
       {/* Contact Section */}
-      <section className="card max-w-2xl mx-auto px-4 py-6 rounded-lg shadow bg-white">
+      <section className="card mx-auto px-4 py-6 rounded-lg shadow bg-white">
         <h2 className="text-2xl font-bold text-brand-primary mb-2 tracking-tight">Contact Us</h2>
         <div className="space-y-1 text-base text-gray-600">
           <p>The Granby Centre, 79 Granby Street, Liverpool, L8 2TU</p>
