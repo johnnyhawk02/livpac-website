@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMERGENCY PAGE - LIVPAC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcccc;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .emergency-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #cc0000;
+            font-size: 36px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .banner {
+            background-color: #cc0000;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-container">
+        <div class="banner">⚠️ EMERGENCY NOTICE ⚠️</div>
+        <h1>Website Update In Progress</h1>
+        <p>We are currently making significant updates to our website.</p>
+        <p>Please check back soon for our improved site with new features and content.</p>
+        <p>If you need immediate assistance, please contact us directly.</p>
+        <p><strong>This page was created at: <span id="timestamp"></span></strong></p>
+    </div>
+
+    <script>
+        // Add the current timestamp to prove this is the new file
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html> 
