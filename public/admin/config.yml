@@ -3,17 +3,21 @@
 # Backend connection (GitHub)
 backend:
   name: github
-  repo: johnnyhawk02/livpac-website # Updated GitHub repo path
-  branch: main # Or whichever branch you deploy from (e.g., master)
-  # base_url and auth_endpoint are needed for GitHub OAuth via a function
-  # Update base_url with your live site URL (Cloudflare Pages URL for now)
-  base_url: https://livpac.pages.dev 
-  auth_endpoint: /api/auth # Path to the function we just created
+  repo: johnnyhawk02/livpac-website
+  branch: main
+  base_url: https://livpac.pages.dev
+  auth_endpoint: /api/auth
+  
+# Use local backend when running locally (comment out in production)
+# local_backend: true
 
 # Media files will be stored in the repo
 # Ensure this path exists or adjust as needed
 media_folder: "public/uploads/images"
 public_folder: "/uploads/images"
+
+# Enable editorial workflow (allows drafts)
+publish_mode: editorial_workflow
 
 # Define editable content types (Collections)
 collections:
@@ -28,4 +32,5 @@ collections:
     fields: # The fields for each news post
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publication Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Body", name: "body", widget: "markdown" } 
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false } 
