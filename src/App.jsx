@@ -9,6 +9,7 @@ import News from "./pages/News";
 import Policies from "./pages/Policies";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import LocalSchools from "./pages/LocalSchools";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/policies" element={<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }}><Policies /></motion.div>} />
             <Route path="/contact" element={<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }}><Contact /></motion.div>} />
             <Route path="/gallery" element={<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }}><Gallery /></motion.div>} />
+            <Route path="/local-schools" element={<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }}><LocalSchools /></motion.div>} />
           </Routes>
         </AnimatePresence>
       </main>
