@@ -7,12 +7,12 @@ const galleryImages = [
   {
     src: robynImage,
     alt: "Robyn balancing on a wooden beam in a woodland play area",
-    caption: "Adventure time at Children's Adventure Farm Trust!"
+    caption: "Woohoo! Adventure time at the Farm Trust! 🌲🌳"
   },
   {
     src: singingHandsImage, // Add new image object
     alt: "Two adults in red Singing Hands t-shirts sitting with two children",
-    caption: "Learning through music with the amazing Singing Hands team!"
+    caption: "Making music magic with the super-cool Singing Hands crew! 🎵👐"
   }
   // Add more image objects like the one above
 ];
@@ -22,7 +22,7 @@ export default function Gallery() {
     <main className="min-h-screen pb-8 bg-yellow-50">
       {/* MAJOR UPDATE BANNER */}
       <div className="bg-red-600 text-white text-center py-3 px-4 font-bold">
-        SITE UPDATE IN PROGRESS - NEW GALLERY COMING SOON!
+        🚀 WHOA! AWESOME NEW GALLERY LOADING... STAY TUNED FOLKS! 🚀
       </div>
       
       {/* Wrap content in a card div for consistency */}
@@ -30,10 +30,10 @@ export default function Gallery() {
         {/* Combined Header Section */}
         <section className="mb-10 text-center"> {/* Removed mt/px from section */}
           <h1 className="text-3xl sm:text-4xl font-extrabold text-red-600 mb-4 leading-tight tracking-tight">
-            🎉 EXCITING NEW GALLERY 🎉
+            ✨ TA-DA! SUPER AWESOME PHOTO BONANZA! ✨
           </h1>
           <p className="text-lg text-blue-700 leading-relaxed mx-auto">
-            Welcome to our completely refreshed visual journey! Check back soon for even more beautiful photos and stories from our amazing community.
+            Welcome to our eye-popping, jaw-dropping, totally spectacular visual feast! Grab your popcorn and scroll through these amazing moments captured with our fabulous LivPaC crew! More epic snapshots coming soon! 📸✨
           </p>
         </section>
         {/* End Header Section */}
@@ -60,19 +60,19 @@ export default function Gallery() {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 italic text-center">More photos coming soon!</p>
+            <p className="text-gray-500 italic text-center">Oops! No photos yet! But don't worry, amazing pics coming VERY soon! 🤩</p>
           )}
         </section>
         {/* End Gallery Grid */}
         
         {/* New Call to Action Section */}
         <section className="mt-12 text-center p-6 bg-orange-100 rounded-lg border-2 border-orange-500">
-          <h2 className="text-2xl font-bold text-orange-700 mb-3">Share Your Memories Today!</h2>
+          <h2 className="text-2xl font-bold text-orange-700 mb-3">📱 Got Awesome Pics? Share 'Em! 📱</h2>
           <p className="text-gray-700 mb-4">
-            Have photos from our events you'd like to share? We'd love to feature them in our gallery!
+            Snap-happy at our events? We'd LOVE to showcase your fabulous photos in our super-duper gallery!
           </p>
           <p className="text-sm text-gray-500">
-            Contact us to submit your photos and help us grow our community archive.
+            Don't be shy - your amazing shots could be famous! Send them our way and help our community album grow! 🌟📸🌟
           </p>
         </section>
         {/* End Call to Action */}
@@ -81,3 +81,5 @@ export default function Gallery() {
   );
 }
 // EMERGENCY FIX
+// TESTING UPDATE
+// SUPER AWESOME GALLERY PAGE
