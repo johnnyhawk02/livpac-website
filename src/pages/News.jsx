@@ -23,10 +23,12 @@ export default function News() {
   };
 
   return (
-    <main className="max-w-2xl mx-auto pt-6 px-4 min-h-screen pb-8">
-      {/* Use the standard card layout */}
-      <section className="card mt-8 mb-8"> 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-6 leading-tight tracking-tight text-center">News</h1>
+    <main className="min-h-screen pb-8">
+      <section className="card mt-8 mb-8">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-3 leading-tight tracking-tight">News</h1>
+        <p className="text-lg text-gray-600 mb-4 leading-relaxed font-medium">
+          Stay updated with the latest developments in the Liverpool SEND community.
+        </p>
         
         {newsArticles.length > 0 ? (
           // Add spacing between posts
