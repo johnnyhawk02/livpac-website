@@ -81,9 +81,8 @@
   </div>
 
   <!-- Decap CMS will mount here -->
-  <div id="nc-root"></div> 
+  <div id="nc-root"></div>
 
-  <!-- Load Decap CMS script -->
   <script>
     // Debug helper
     function logDebug(message) {
@@ -118,105 +117,63 @@
       logDebug('ERROR: ' + message);
     }
 
+    // Hide loading indicator
+    function hideLoader() {
+      logDebug('Hiding loader...');
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    }
+
     // Initialize with fallback timeout
     let initTimeout = setTimeout(function() {
       showError('CMS initialization timed out. This may be due to an authentication issue or network problem.');
     }, 30000); // 30 second timeout
 
-    // Define config before loading CMS
-    window.CMS_MANUAL_INIT = true;
-    window.CMS_CONFIGURATION = {
-      backend: {
-        name: 'github',
-        repo: 'johnnyhawk02/livpac-website',
-        branch: 'main',
-        base_url: 'https://livpac.pages.dev',
-        auth_endpoint: '/api/auth',
-        site_domain: 'livpac.pages.dev'
-      },
-      media_folder: 'public/uploads/images',
-      public_folder: '/uploads/images',
-      publish_mode: 'editorial_workflow',
-      collections: [
-        {
-          name: 'news',
-          label: 'News Posts',
-          folder: 'src/content/news',
-          create: true,
-          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-          extension: 'md',
-          format: 'frontmatter',
-          fields: [
-            { label: 'Title', name: 'title', widget: 'string' },
-            { label: 'Publication Date', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
-            { label: 'Body', name: 'body', widget: 'markdown' },
-            { label: 'Featured Image', name: 'image', widget: 'image', required: false }
-          ]
-        }
-      ]
-    };
-  </script>
-
-  <!-- Load Decap CMS script -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script>
     // Start monitoring for errors
     window.addEventListener('error', function(event) {
       showError('JavaScript error: ' + event.message);
     });
 
-    logDebug('Page loaded, waiting for CMS...');
-    
-    // Initialize CMS once loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.CMS) {
-        logDebug('CMS object found, initializing manually...');
-        try {
-          // Register the init event before initialization
-          window.CMS.registerEventListener({
-            name: 'init',
-            handler: () => {
-              logDebug('CMS initialized successfully!');
-              clearTimeout(initTimeout);
-              document.getElementById('loading').style.display = 'none';
-            },
-          });
-          
-          // Initialize with configuration
-          window.CMS.init({ config: window.CMS_CONFIGURATION });
-          logDebug('CMS.init() called');
-          
-        } catch (error) {
-          showError('CMS initialization error: ' + error.message);
-        }
+    logDebug('Page loaded, loading CMS...');
+  </script>
+
+  <!-- Simple config.yml approach -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Check if CMS loaded successfully and hide loader after a delay
+    setTimeout(function() {
+      const root = document.getElementById('nc-root');
+      
+      // If the root element has children, CMS likely loaded successfully
+      if (root && root.children && root.children.length > 0) {
+        logDebug('CMS appears to be loaded (root element has content)');
+        clearTimeout(initTimeout);
+        hideLoader();
       } else {
-        logDebug('WARNING: CMS object not found after DOMContentLoaded');
+        // Try with a different approach - config file
+        logDebug('No CMS content found, trying alternative loading method...');
         
-        // Check again after a short delay
-        setTimeout(function() {
-          if (window.CMS) {
-            logDebug('CMS found after delay, attempting initialization...');
-            try {
-              window.CMS.registerEventListener({
-                name: 'init',
-                handler: () => {
-                  logDebug('CMS initialized successfully (delayed)!');
-                  clearTimeout(initTimeout);
-                  document.getElementById('loading').style.display = 'none';
-                },
-              });
-              
-              window.CMS.init({ config: window.CMS_CONFIGURATION });
-            } catch (error) {
-              showError('Delayed CMS initialization error: ' + error.message);
+        try {
+          logDebug('Loading config from file');
+          // Just let the config.yml load normally
+          setTimeout(function() {
+            // Check again if CMS loaded
+            if (root && root.children && root.children.length > 0) {
+              logDebug('CMS loaded via config.yml approach');
+              clearTimeout(initTimeout);
+              hideLoader();
+            } else {
+              showError('CMS failed to load content after multiple attempts. Please check console for errors.');
             }
-          } else {
-            showError('CMS object not available - script may have failed to load');
-          }
-        }, 2000);
+          }, 5000);
+        } catch (error) {
+          showError('Error during fallback loading: ' + error.message);
+        }
       }
-    });
+    }, 3000);
   </script>
 </body>
 </html> 
