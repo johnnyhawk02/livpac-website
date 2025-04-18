@@ -7,7 +7,7 @@ const navLinks = [
   { name: "About Us", path: "/about" },
   { name: "Events Calendar", path: "/events" },
   { name: "Gallery", path: "/gallery" },
-  { name: "Social News", path: "/news" },
+  { name: "News", path: "/news" },
   { name: "Resources", path: "/resources" },
   { name: "Policies", path: "/policies" },
   { name: "Contact", path: "/contact" },
