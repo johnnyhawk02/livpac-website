@@ -1,6 +1,6 @@
 // functions/api/auth.js - Handles GitHub OAuth callback for Decap CMS
 
-export async function onRequestPost({ request }) {
+export async function onRequestPost({ request, env }) {
   try {
     const body = await request.json();
     const { code, provider } = body;
@@ -19,6 +19,9 @@ export async function onRequestPost({ request }) {
       });
     }
 
+    // Log environment variables for debugging (only client_id, not the secret)
+    console.log('Using GitHub Client ID:', env.GITHUB_CLIENT_ID ? 'Found ID' : 'ID missing');
+    
     // Exchange the code for an access token with GitHub
     console.log('Exchanging code for token with GitHub');
     const response = await fetch('https://github.com/login/oauth/access_token', {
@@ -28,8 +31,8 @@ export async function onRequestPost({ request }) {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        client_id: env.GITHUB_CLIENT_ID,
+        client_secret: env.GITHUB_CLIENT_SECRET,
         code: code,
       }),
     });

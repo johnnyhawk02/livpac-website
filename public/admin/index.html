@@ -4,12 +4,118 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #2E86AB;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    .loading-text {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .debug-info {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+      max-width: 80%;
+      overflow: auto;
+      font-size: 14px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
+  <!-- Loading indicator -->
+  <div class="loader-container" id="loading">
+    <div class="loader"></div>
+    <div class="loading-text">Loading Content Management System...</div>
+    <div id="loading-status">Initializing CMS...</div>
+    <div class="debug-info" id="debug-info"></div>
+  </div>
+
   <!-- Decap CMS will mount here -->
   <div id="nc-root"></div> 
 
   <!-- Load Decap CMS script -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Debug helper
+    function logDebug(message) {
+      const debugInfo = document.getElementById('debug-info');
+      const loadingStatus = document.getElementById('loading-status');
+      
+      if (debugInfo) {
+        debugInfo.innerHTML += message + '<br>';
+      }
+      
+      if (loadingStatus) {
+        loadingStatus.textContent = message;
+      }
+      
+      console.log(message);
+    }
+
+    // Hide loading screen when CMS is initialized
+    if (window.CMS) {
+      logDebug('CMS object found, registering init event');
+      window.CMS.registerEventListener({
+        name: 'preSave',
+        handler: () => {
+          logDebug('CMS preSave event triggered');
+        },
+      });
+      
+      window.CMS.registerEventListener({
+        name: 'init',
+        handler: () => {
+          logDebug('CMS initialized successfully!');
+          document.getElementById('loading').style.display = 'none';
+        },
+      });
+    } else {
+      logDebug('CMS object not found immediately - waiting for load');
+      
+      // Listen for CMS load if not immediately available
+      window.addEventListener('load', function() {
+        if (window.CMS) {
+          logDebug('CMS loaded via window.load event');
+          window.CMS.registerEventListener({
+            name: 'init',
+            handler: () => {
+              logDebug('CMS initialized successfully!');
+              document.getElementById('loading').style.display = 'none';
+            },
+          });
+        } else {
+          logDebug('ERROR: CMS not found after window load');
+        }
+      });
+    }
+  </script>
 </body>
 </html> 

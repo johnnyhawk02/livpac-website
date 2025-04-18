@@ -7,7 +7,14 @@ backend:
   branch: main
   base_url: https://livpac.pages.dev
   auth_endpoint: /api/auth
-  
+  site_domain: livpac.pages.dev
+  commit_messages:
+    create: "Create {{collection}} "{{slug}}""
+    update: "Update {{collection}} "{{slug}}""
+    delete: "Delete {{collection}} "{{slug}}""
+    uploadMedia: "Upload "{{path}}""
+    deleteMedia: "Delete "{{path}}""
+
 # Use local backend when running locally (comment out in production)
 # local_backend: true
 
@@ -18,6 +25,10 @@ public_folder: "/uploads/images"
 
 # Enable editorial workflow (allows drafts)
 publish_mode: editorial_workflow
+
+# Set site URL to ensure correct callback
+site_url: https://livpac.pages.dev
+display_url: https://livpac.pages.dev
 
 # Define editable content types (Collections)
 collections:
