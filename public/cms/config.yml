@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: johnnyhawk02/livpac-website
+  branch: main
+  base_url: https://livpac.pages.dev
+  auth_endpoint: /api/auth
+
+# Media folder path (relative to repo root)
+media_folder: public/uploads/images
+public_folder: /uploads/images
+
+# Collections
+collections:
+  - name: news
+    label: News
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: Body, name: body, widget: markdown } 
