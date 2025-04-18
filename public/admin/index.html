@@ -3,177 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
   <title>Content Manager</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      padding: 0;
+    html, body {
+      height: 100%;
       margin: 0;
-    }
-    .loader-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #f8f9fa;
-    }
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #2E86AB;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    .loading-text {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-    .debug-info {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background-color: #f5f5f5;
-      max-width: 80%;
-      overflow: auto;
-      font-size: 14px;
-    }
-    .error-message {
-      margin-top: 20px;
-      padding: 10px;
-      color: white;
-      background-color: #dc3545;
-      border-radius: 4px;
-      max-width: 80%;
-    }
-    .retry-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .retry-button:hover {
-      background-color: #0069d9;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      padding: 0;
     }
   </style>
 </head>
 <body>
-  <!-- Loading indicator -->
-  <div class="loader-container" id="loading">
-    <div class="loader"></div>
-    <div class="loading-text">Loading Content Management System...</div>
-    <div id="loading-status">Initializing CMS...</div>
-    <div class="debug-info" id="debug-info"></div>
-    <div class="error-message" id="error-message" style="display: none;"></div>
-    <button class="retry-button" id="retry-button" style="display: none;" onclick="window.location.reload()">Retry</button>
-  </div>
-
-  <!-- Decap CMS will mount here -->
+  <!-- This div is where the CMS will be mounted -->
   <div id="nc-root"></div>
-
-  <script>
-    // Debug helper
-    function logDebug(message) {
-      const debugInfo = document.getElementById('debug-info');
-      const loadingStatus = document.getElementById('loading-status');
-      
-      if (debugInfo) {
-        debugInfo.innerHTML += message + '<br>';
-      }
-      
-      if (loadingStatus) {
-        loadingStatus.textContent = message;
-      }
-      
-      console.log(message);
-    }
-
-    // Handle errors
-    function showError(message) {
-      const errorElement = document.getElementById('error-message');
-      const retryButton = document.getElementById('retry-button');
-      
-      if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-      }
-      
-      if (retryButton) {
-        retryButton.style.display = 'block';
-      }
-      
-      logDebug('ERROR: ' + message);
-    }
-
-    // Hide loading indicator
-    function hideLoader() {
-      logDebug('Hiding loader...');
-      const loading = document.getElementById('loading');
-      if (loading) {
-        loading.style.display = 'none';
-      }
-    }
-
-    // Initialize with fallback timeout
-    let initTimeout = setTimeout(function() {
-      showError('CMS initialization timed out. This may be due to an authentication issue or network problem.');
-    }, 30000); // 30 second timeout
-
-    // Start monitoring for errors
-    window.addEventListener('error', function(event) {
-      showError('JavaScript error: ' + event.message);
-    });
-
-    logDebug('Page loaded, loading CMS...');
-  </script>
-
-  <!-- Simple config.yml approach -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
-  <script>
-    // Check if CMS loaded successfully and hide loader after a delay
-    setTimeout(function() {
-      const root = document.getElementById('nc-root');
-      
-      // If the root element has children, CMS likely loaded successfully
-      if (root && root.children && root.children.length > 0) {
-        logDebug('CMS appears to be loaded (root element has content)');
-        clearTimeout(initTimeout);
-        hideLoader();
-      } else {
-        // Try with a different approach - config file
-        logDebug('No CMS content found, trying alternative loading method...');
-        
-        try {
-          logDebug('Loading config from file');
-          // Just let the config.yml load normally
-          setTimeout(function() {
-            // Check again if CMS loaded
-            if (root && root.children && root.children.length > 0) {
-              logDebug('CMS loaded via config.yml approach');
-              clearTimeout(initTimeout);
-              hideLoader();
-            } else {
-              showError('CMS failed to load content after multiple attempts. Please check console for errors.');
-            }
-          }, 5000);
-        } catch (error) {
-          showError('Error during fallback loading: ' + error.message);
-        }
-      }
-    }, 3000);
-  </script>
+  <!-- Just load the CMS - nothing else -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html> 

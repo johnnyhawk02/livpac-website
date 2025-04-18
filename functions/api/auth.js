@@ -6,11 +6,7 @@ export async function onRequestPost({ request, env }) {
     const { code, provider } = body;
 
     if (provider !== 'github' || !code) {
-      console.error('Invalid request: Missing code or incorrect provider');
-      return new Response(JSON.stringify({ 
-        error: 'Invalid request',
-        message: 'Missing code or incorrect provider' 
-      }), { 
+      return new Response(JSON.stringify({ error: 'Invalid request' }), { 
         status: 400,
         headers: {
           'Content-Type': 'application/json',
@@ -19,12 +15,8 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // Log environment variables for debugging (only client_id, not the secret)
-    console.log('Using GitHub Client ID:', env.GITHUB_CLIENT_ID ? 'Found ID' : 'ID missing');
-    
     // Exchange the code for an access token with GitHub
-    console.log('Exchanging code for token with GitHub');
-    const response = await fetch('https://github.com/login/oauth/access_token', {
+    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,15 +29,10 @@ export async function onRequestPost({ request, env }) {
       }),
     });
 
-    const data = await response.json();
+    const tokenData = await tokenResponse.json();
 
-    if (data.error) {
-      console.error('GitHub OAuth Error:', data.error_description);
-      return new Response(JSON.stringify({ 
-        error: 'GitHub authentication failed',
-        github_error: data.error,
-        github_error_description: data.error_description
-      }), { 
+    if (tokenData.error) {
+      return new Response(JSON.stringify({ error: tokenData.error_description || 'GitHub authentication failed' }), { 
         status: 500,
         headers: {
           'Content-Type': 'application/json',
@@ -54,12 +41,7 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    console.log('Authentication successful, returning token');
-    // Return the token (and potentially other info if needed)
-    return new Response(JSON.stringify({ 
-      token: data.access_token,
-      provider: 'github'
-    }), {
+    return new Response(JSON.stringify({ token: tokenData.access_token, provider: 'github' }), {
       status: 200,
       headers: { 
         'Content-Type': 'application/json',
@@ -68,11 +50,7 @@ export async function onRequestPost({ request, env }) {
     });
 
   } catch (error) {
-    console.error('Auth function error:', error.message);
-    return new Response(JSON.stringify({ 
-      error: 'Authentication service error',
-      message: error.message
-    }), { 
+    return new Response(JSON.stringify({ error: error.message || 'Server error' }), { 
       status: 500,
       headers: {
         'Content-Type': 'application/json',
