@@ -1,59 +1,82 @@
 import React from "react";
-import { marked } from 'marked'; // Import marked
-import fm from 'front-matter'; // Import front-matter
 
-// Vite Glob Import to get all markdown files from the news directory
-// Ensure this path matches where you created the .md files
-const modules = import.meta.glob('../content/news/*.md', { 
-  as: 'raw', // Import as raw text strings
-  eager: true // Load modules immediately (can be false for lazy loading if needed)
-});
-
-// Process the imported modules
-const posts = Object.entries(modules).map(([filepath, rawContent]) => {
-  try {
-    // Parse frontmatter (attributes) and body from the raw string
-    const { attributes, body } = fm(rawContent); 
-    // Convert markdown body to HTML string
-    const htmlContent = marked.parse(body); 
-    return {
-      ...attributes, // Spread frontmatter attributes (e.g., title, date)
-      htmlContent,  // Add the parsed HTML content
-      // Create a simple slug from the filename for the key
-      slug: filepath.substring(filepath.lastIndexOf('/') + 1).replace('.md', '') 
-    };
-  } catch (e) {
-    // Log error if parsing fails for a file
-    console.error(`Error processing file ${filepath}:`, e);
-    return null; // Skip files that cause errors
+// Hardcoded news items
+const newsItems = [
+  {
+    id: 1,
+    title: "Summer Holiday Activities 2023",
+    date: "2023-07-15",
+    content: `
+      <p>We're excited to announce our summer holiday activities program for families with SEND children!</p>
+      <p>This summer, LivPaC has partnered with several local organizations to provide inclusive activities for children of all abilities. Activities include:</p>
+      <ul>
+        <li>Sensory-friendly swimming sessions at Liverpool Aquatics Centre</li>
+        <li>Arts and crafts workshops at The Bluecoat</li>
+        <li>Outdoor play sessions at Croxteth Park</li>
+        <li>Family movie days with reduced sound and lights</li>
+      </ul>
+      <p>All activities are free for LivPaC members. To book your place, please contact us via email or phone.</p>
+    `
+  },
+  {
+    id: 2,
+    title: "New Support Group Launching in September",
+    date: "2023-06-20",
+    content: `
+      <p>LivPaC is launching a new monthly support group for parents and carers of children with additional needs.</p>
+      <p>Starting in September, our new "Coffee & Chat" support group will meet on the first Tuesday of each month at The Granby Centre. This informal group offers a chance to meet other parents and carers, share experiences, and access support in a relaxed environment.</p>
+      <p>No booking required - just drop in between 10am and 12pm. Refreshments provided.</p>
+      <p><strong>First meeting:</strong> Tuesday, 5th September 2023</p>
+    `
+  },
+  {
+    id: 3,
+    title: "Parent Carer Feedback: SEND Services Survey Results",
+    date: "2023-05-10",
+    content: `
+      <p>Thank you to everyone who participated in our recent survey about SEND services in Liverpool.</p>
+      <p>We received over 150 responses which have provided valuable insights into the experiences of families accessing services across the city. Key findings include:</p>
+      <ul>
+        <li>76% of respondents found the EHCP process challenging to navigate</li>
+        <li>82% would like more information about available support</li>
+        <li>53% reported difficulties accessing appropriate healthcare services</li>
+      </ul>
+      <p>We've shared these results with Liverpool City Council and local NHS services to help improve provision for our families. A full report is available on request.</p>
+    `
   }
-}).filter(post => post !== null) // Remove any null entries resulting from errors
-  .sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date descending (newest first)
+];
 
 export default function News() {
+  // Format date function
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-GB', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
 
   return (
     <main className="max-w-2xl mx-auto pt-6 px-4 min-h-screen pb-8">
       {/* Use the standard card layout */}
       <section className="card mt-8 mb-8"> 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-6 leading-tight tracking-tight text-center">Social News</h1>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-6 leading-tight tracking-tight text-center">News</h1>
         
-        {posts.length > 0 ? (
+        {newsItems.length > 0 ? (
           // Add spacing between posts
           <div className="space-y-8"> 
-            {posts.map((post) => (
+            {newsItems.map((item) => (
               // Render each post as an article, add border between posts
-              <article key={post.slug} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0"> 
-                <h2 className="text-2xl font-bold text-brand-primary mb-2">{post.title}</h2>
+              <article key={item.id} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0"> 
+                <h2 className="text-2xl font-bold text-brand-primary mb-2">{item.title}</h2>
                 <p className="text-sm text-gray-500 mb-4">
                   {/* Format the date nicely */}
-                  Published: {new Date(post.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  Published: {formatDate(item.date)}
                 </p>
-                {/* Render the HTML generated from Markdown */}
-                {/* Apply Tailwind typography plugin styles for basic markdown formatting */}
+                {/* Render the HTML content */}
                 <div 
                   className="prose prose-lg max-w-none text-gray-700 prose-a:text-brand-primary hover:prose-a:text-brand-accent" 
-                  dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+                  dangerouslySetInnerHTML={{ __html: item.content }}
                 />
               </article>
             ))}
@@ -62,7 +85,6 @@ export default function News() {
           // Message if no posts are found
           <p className="text-center text-gray-500 italic">No news posts found.</p> 
         )}
-
       </section>
     </main>
   );
