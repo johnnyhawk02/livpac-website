@@ -1,6 +1,6 @@
 // functions/api/auth.js - Handles GitHub OAuth callback for Decap CMS
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request }) {
   try {
     const body = await request.json();
     const { code, provider } = body;
@@ -28,8 +28,8 @@ export async function onRequestPost({ request, env }) {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        client_id: env.GITHUB_CLIENT_ID,
-        client_secret: env.GITHUB_CLIENT_SECRET,
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
         code: code,
       }),
     });
