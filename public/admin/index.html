@@ -42,6 +42,27 @@
       overflow: auto;
       font-size: 14px;
     }
+    .error-message {
+      margin-top: 20px;
+      padding: 10px;
+      color: white;
+      background-color: #dc3545;
+      border-radius: 4px;
+      max-width: 80%;
+    }
+    .retry-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .retry-button:hover {
+      background-color: #0069d9;
+    }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -55,14 +76,14 @@
     <div class="loading-text">Loading Content Management System...</div>
     <div id="loading-status">Initializing CMS...</div>
     <div class="debug-info" id="debug-info"></div>
+    <div class="error-message" id="error-message" style="display: none;"></div>
+    <button class="retry-button" id="retry-button" style="display: none;" onclick="window.location.reload()">Retry</button>
   </div>
 
   <!-- Decap CMS will mount here -->
   <div id="nc-root"></div> 
 
   <!-- Load Decap CMS script -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
   <script>
     // Debug helper
     function logDebug(message) {
@@ -80,42 +101,118 @@
       console.log(message);
     }
 
-    // Hide loading screen when CMS is initialized
-    if (window.CMS) {
-      logDebug('CMS object found, registering init event');
-      window.CMS.registerEventListener({
-        name: 'preSave',
-        handler: () => {
-          logDebug('CMS preSave event triggered');
-        },
-      });
+    // Handle errors
+    function showError(message) {
+      const errorElement = document.getElementById('error-message');
+      const retryButton = document.getElementById('retry-button');
       
-      window.CMS.registerEventListener({
-        name: 'init',
-        handler: () => {
-          logDebug('CMS initialized successfully!');
-          document.getElementById('loading').style.display = 'none';
-        },
-      });
-    } else {
-      logDebug('CMS object not found immediately - waiting for load');
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+      }
       
-      // Listen for CMS load if not immediately available
-      window.addEventListener('load', function() {
-        if (window.CMS) {
-          logDebug('CMS loaded via window.load event');
+      if (retryButton) {
+        retryButton.style.display = 'block';
+      }
+      
+      logDebug('ERROR: ' + message);
+    }
+
+    // Initialize with fallback timeout
+    let initTimeout = setTimeout(function() {
+      showError('CMS initialization timed out. This may be due to an authentication issue or network problem.');
+    }, 30000); // 30 second timeout
+
+    // Define config before loading CMS
+    window.CMS_MANUAL_INIT = true;
+    window.CMS_CONFIGURATION = {
+      backend: {
+        name: 'github',
+        repo: 'johnnyhawk02/livpac-website',
+        branch: 'main',
+        base_url: 'https://livpac.pages.dev',
+        auth_endpoint: '/api/auth',
+        site_domain: 'livpac.pages.dev'
+      },
+      media_folder: 'public/uploads/images',
+      public_folder: '/uploads/images',
+      publish_mode: 'editorial_workflow',
+      collections: [
+        {
+          name: 'news',
+          label: 'News Posts',
+          folder: 'src/content/news',
+          create: true,
+          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+          extension: 'md',
+          format: 'frontmatter',
+          fields: [
+            { label: 'Title', name: 'title', widget: 'string' },
+            { label: 'Publication Date', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
+            { label: 'Body', name: 'body', widget: 'markdown' },
+            { label: 'Featured Image', name: 'image', widget: 'image', required: false }
+          ]
+        }
+      ]
+    };
+  </script>
+
+  <!-- Load Decap CMS script -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Start monitoring for errors
+    window.addEventListener('error', function(event) {
+      showError('JavaScript error: ' + event.message);
+    });
+
+    logDebug('Page loaded, waiting for CMS...');
+    
+    // Initialize CMS once loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.CMS) {
+        logDebug('CMS object found, initializing manually...');
+        try {
+          window.CMS.init({ config: window.CMS_CONFIGURATION });
+          
           window.CMS.registerEventListener({
-            name: 'init',
+            name: 'onInit', // For older versions
             handler: () => {
-              logDebug('CMS initialized successfully!');
+              logDebug('CMS initialized via onInit event');
+              clearTimeout(initTimeout);
               document.getElementById('loading').style.display = 'none';
             },
           });
-        } else {
-          logDebug('ERROR: CMS not found after window load');
+          
+          window.CMS.registerEventListener({
+            name: 'init', // For newer versions
+            handler: () => {
+              logDebug('CMS initialized via init event');
+              clearTimeout(initTimeout);
+              document.getElementById('loading').style.display = 'none';
+            },
+          });
+        } catch (error) {
+          showError('CMS initialization error: ' + error.message);
         }
-      });
-    }
+      } else {
+        logDebug('WARNING: CMS object not found after DOMContentLoaded');
+        
+        // Check again after a short delay
+        setTimeout(function() {
+          if (window.CMS) {
+            logDebug('CMS found after delay, attempting initialization...');
+            try {
+              window.CMS.init({ config: window.CMS_CONFIGURATION });
+            } catch (error) {
+              showError('Delayed CMS initialization error: ' + error.message);
+            }
+          } else {
+            showError('CMS object not available - script may have failed to load');
+          }
+        }, 2000);
+      }
+    });
   </script>
 </body>
 </html> 
