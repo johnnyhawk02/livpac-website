@@ -1,3 +1,10 @@
+# Static HTML files
+/test.html /test.html 200
+
+# CMS routes
+/content-admin/* /content-admin/index.html 200
 /admin/* /admin/index.html 200
 /cms/* /cms/index.html 200
+
+# SPA catch-all
 /* /index.html 200 
