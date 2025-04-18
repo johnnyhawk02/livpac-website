@@ -20,9 +20,9 @@ const galleryImages = [
 export default function Gallery() {
   return (
     <main className="min-h-screen pb-8">
-      <section className="card mt-8 mb-8">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-3 leading-tight tracking-tight">Photo Gallery</h1>
-        <p className="text-lg text-gray-600 mb-4 leading-relaxed font-medium">
+      <section className="card mt-8 mb-8 bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-colors duration-200">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary dark:text-brand-light mb-3 leading-tight tracking-tight">Photo Gallery</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium">
           Welcome to our photo gallery showcasing moments from LivPaC events and activities. 
           Here you'll find a collection of memories from our community gatherings.
         </p>
@@ -39,7 +39,7 @@ export default function Gallery() {
                     className="w-full h-auto object-cover block rounded-lg"
                   />
                   {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-brand-primary bg-opacity-80 p-2 opacity-100 transition-opacity duration-300 rounded-b-lg">
+                    <div className="absolute bottom-0 left-0 right-0 bg-brand-primary bg-opacity-80 dark:bg-opacity-90 p-2 opacity-100 transition-opacity duration-300 rounded-b-lg">
                       <p className="text-white text-center text-sm px-1">
                         {image.caption}
                       </p>
@@ -49,17 +49,17 @@ export default function Gallery() {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 italic text-center">No photos available yet. Check back soon for updates.</p>
+            <p className="text-gray-500 dark:text-gray-400 italic text-center">No photos available yet. Check back soon for updates.</p>
           )}
         </div>
         
         {/* Call to Action Section */}
-        <div className="bg-brand-primary/10 rounded-lg p-4 mt-6">
-          <h2 className="text-lg font-semibold text-brand-primary mb-2">Share Your Photos</h2>
-          <p className="text-base text-gray-600 mb-2">
+        <div className="bg-brand-primary/10 dark:bg-brand-primary/20 rounded-lg p-4 mt-6">
+          <h2 className="text-lg font-semibold text-brand-primary dark:text-brand-light mb-2">Share Your Photos</h2>
+          <p className="text-base text-gray-600 dark:text-gray-300 mb-2">
             If you have photos from our events that you'd like to share, we'd love to include them in our gallery.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Please contact us to submit your photos and help our community album grow.
           </p>
         </div>

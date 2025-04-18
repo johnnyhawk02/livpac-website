@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.08rem;
   line-height: 1.7;
   color: theme('colors.gray.800');
@@ -11,7 +12,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark body {
+  color: theme('colors.gray.200');
+  background: theme('colors.gray.950');
+}
+
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Varela Round', sans-serif;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -24,10 +31,20 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.6rem;
 }
 
+.dark .card, .dark .section {
+  background: theme('colors.gray.800');
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
 a {
   color: theme('colors.brand-primary');
   transition: color 0.15s;
 }
+
+.dark a {
+  color: theme('colors.brand-light');
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -36,6 +53,15 @@ a:hover {
   box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.07);
 }
 
+.dark .navbar {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for dark mode toggle */
+.dark-mode-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 input, textarea, button {
-  /* font-family rule removed - inherits from body */
+  font-family: 'Open Sans', sans-serif;
 }
