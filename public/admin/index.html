@@ -173,25 +173,20 @@
       if (window.CMS) {
         logDebug('CMS object found, initializing manually...');
         try {
+          // Register the init event before initialization
+          window.CMS.registerEventListener({
+            name: 'init',
+            handler: () => {
+              logDebug('CMS initialized successfully!');
+              clearTimeout(initTimeout);
+              document.getElementById('loading').style.display = 'none';
+            },
+          });
+          
+          // Initialize with configuration
           window.CMS.init({ config: window.CMS_CONFIGURATION });
+          logDebug('CMS.init() called');
           
-          window.CMS.registerEventListener({
-            name: 'onInit', // For older versions
-            handler: () => {
-              logDebug('CMS initialized via onInit event');
-              clearTimeout(initTimeout);
-              document.getElementById('loading').style.display = 'none';
-            },
-          });
-          
-          window.CMS.registerEventListener({
-            name: 'init', // For newer versions
-            handler: () => {
-              logDebug('CMS initialized via init event');
-              clearTimeout(initTimeout);
-              document.getElementById('loading').style.display = 'none';
-            },
-          });
         } catch (error) {
           showError('CMS initialization error: ' + error.message);
         }
@@ -203,6 +198,15 @@
           if (window.CMS) {
             logDebug('CMS found after delay, attempting initialization...');
             try {
+              window.CMS.registerEventListener({
+                name: 'init',
+                handler: () => {
+                  logDebug('CMS initialized successfully (delayed)!');
+                  clearTimeout(initTimeout);
+                  document.getElementById('loading').style.display = 'none';
+                },
+              });
+              
               window.CMS.init({ config: window.CMS_CONFIGURATION });
             } catch (error) {
               showError('Delayed CMS initialization error: ' + error.message);
