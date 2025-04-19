@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Static Route Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .box {
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Static Route Test Page</h1>
+  <div class="box">
+    <p>If you can see this page, static routing to /test.html is working correctly.</p>
+    <p>This means Cloudflare Pages is serving this specific HTML file instead of redirecting to the SPA.</p>
+  </div>
+  <p>Next, try accessing the CMS at:</p>
+  <ul style="list-style: none;">
+    <li><a href="/admin/">/admin/</a></li>
+    <li><a href="/cms/">/cms/</a></li>
+  </ul>
+</body>
+</html> 

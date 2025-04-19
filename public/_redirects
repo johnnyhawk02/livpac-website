@@ -1,0 +1,5 @@
+# Static HTML files
+/test.html /test.html 200
+
+# SPA catch-all
+/* /index.html 200 

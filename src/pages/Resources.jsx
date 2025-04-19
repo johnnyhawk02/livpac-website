@@ -57,14 +57,14 @@ export default function Resources() {
 
   return (
     <main className="min-h-screen pb-8">
-      <section className="card mt-8 mb-8">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-3 leading-tight tracking-tight">Resources</h1>
-        <p className="text-lg text-gray-600 mb-4 leading-relaxed font-medium">
+      <section className="card mt-8 mb-8 bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-colors duration-200">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary dark:text-brand-light mb-3 leading-tight tracking-tight">Resources</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium">
           Helpful links, guides, and downloadable materials for families of children and young people with SEND.
         </p>
         
         {/* Accordion Section for Local Schools */}
-        <div className="bg-gray-50 rounded-lg border border-gray-200 mb-8 overflow-hidden">
+        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 mb-8 overflow-hidden transition-colors duration-200">
           <button 
             onClick={() => setIsSchoolsVisible(!isSchoolsVisible)}
             className="w-full flex justify-between items-center p-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50"
@@ -72,13 +72,13 @@ export default function Resources() {
             aria-controls="local-schools-list"
           >
             <div>
-              <h2 className="text-xl font-semibold text-brand-primary">Local Schools & Provisions</h2>
-              <p className="text-gray-700 text-sm mt-1">Click to view list of local schools offering specialist support and provisions.</p>
+              <h2 className="text-xl font-semibold text-brand-primary dark:text-brand-light">Local Schools & Provisions</h2>
+              <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">Click to view list of local schools offering specialist support and provisions.</p>
             </div>
             {/* Chevron Icon */}
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className={`h-6 w-6 text-brand-primary transform transition-transform duration-200 ${isSchoolsVisible ? 'rotate-180' : ''}`}
+              className={`h-6 w-6 text-brand-primary dark:text-brand-light transform transition-transform duration-200 ${isSchoolsVisible ? 'rotate-180' : ''}`}
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor" 
@@ -90,19 +90,19 @@ export default function Resources() {
           
           {/* Conditionally Rendered School List */}
           {isSchoolsVisible && (
-            <div id="local-schools-list" className="p-4 border-t border-gray-200">
+            <div id="local-schools-list" className="p-4 border-t border-gray-200 dark:border-gray-600">
               {Object.entries(groupedSchools).map(([category, schools]) => (
                 <div key={category} className="mb-8 last:mb-0">
-                  <h3 className="text-lg font-bold text-brand-primary border-b border-brand-primary/20 pb-1 mb-4">{category}</h3>
+                  <h3 className="text-lg font-bold text-brand-primary dark:text-brand-light border-b border-brand-primary/20 dark:border-brand-light/20 pb-1 mb-4">{category}</h3>
                   <div className="space-y-4">
                     {schools.map((school, index) => (
                       <div key={index} className="flex flex-col sm:flex-row justify-between items-start gap-3">
                         <div className="flex-1 mb-2 sm:mb-0">
-                          <h4 className="font-semibold text-brand-primary mb-0.5">
+                          <h4 className="font-semibold text-brand-primary dark:text-brand-light mb-0.5">
                             {school.name}
                           </h4>
-                          <p className="text-gray-600 italic text-sm mb-1">{school.description}</p>
-                          <div className="text-xs text-gray-500 space-x-3">
+                          <p className="text-gray-600 dark:text-gray-300 italic text-sm mb-1">{school.description}</p>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 space-x-3">
                             <span>Age: {school.ageRange}</span>
                             <span>Postcode: {school.postcode}</span>
                           </div>
@@ -112,7 +112,7 @@ export default function Resources() {
                           target="_blank" 
                           rel="noopener noreferrer" 
                           aria-label={`Visit ${school.name} website (opens in new tab)`}
-                          className="text-brand-accent hover:text-brand-primary transition-colors duration-200 p-1 -m-1 flex-shrink-0 self-end sm:self-start"
+                          className="text-brand-accent dark:text-brand-accent hover:text-brand-primary dark:hover:text-brand-light transition-colors duration-200 p-1 -m-1 flex-shrink-0 self-end sm:self-start"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -128,53 +128,53 @@ export default function Resources() {
         </div>
 
         {/* Liverpool-Specific Resources */}
-        <h2 className="text-2xl font-bold text-brand-primary mt-6 mb-3">Liverpool-Specific Resources</h2>
+        <h2 className="text-2xl font-bold text-brand-primary dark:text-brand-light mt-6 mb-3">Liverpool-Specific Resources</h2>
         <div className="space-y-6 mb-8">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://fsd.liverpool.gov.uk/kb5/liverpool/fsd/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://fsd.liverpool.gov.uk/kb5/liverpool/fsd/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Liverpool SEND Local Offer
             </a>
-            <p className="text-gray-700 mt-1">Comprehensive local directory of services and support for children and young people with SEND in Liverpool.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Comprehensive local directory of services and support for children and young people with SEND in Liverpool.</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://www.knowsleyinfo.co.uk/categories/knowsley-send-local-offer" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://www.knowsleyinfo.co.uk/categories/knowsley-send-local-offer" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Knowsley SEND Local Offer
             </a>
-            <p className="text-gray-700 mt-1">Information on local services and support for SEND children and their families in Knowsley.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Information on local services and support for SEND children and their families in Knowsley.</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://fisd.liverpool.gov.uk/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://fisd.liverpool.gov.uk/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Liverpool Family Information & SEND Directory (FISD)
             </a>
-            <p className="text-gray-700 mt-1">Comprehensive directory offering details on family services, childcare providers, and SEND support in Liverpool.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Comprehensive directory offering details on family services, childcare providers, and SEND support in Liverpool.</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://www.seftondirectory.com/kb5/sefton/directory/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://www.seftondirectory.com/kb5/sefton/directory/localoffer.page?localofferchannel=0" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Sefton SEND Local Offer
             </a>
-            <p className="text-gray-700 mt-1">Comprehensive directory of services and support for children and young people with SEND in Sefton.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Comprehensive directory of services and support for children and young people with SEND in Sefton.</p>
           </div>
         </div>
         {/* Key National Resources */}
-        <h2 className="text-2xl font-bold text-brand-primary mt-8 mb-3">Key National Resources</h2>
+        <h2 className="text-2xl font-bold text-brand-primary dark:text-brand-light mt-8 mb-3">Key National Resources</h2>
         <div className="space-y-6">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://www.gov.uk/government/publications/send-guide-for-parents-and-carers" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://www.gov.uk/government/publications/send-guide-for-parents-and-carers" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Parent Carer Support Guide
             </a>
-            <p className="text-gray-700 mt-1">Government-issued guide explaining the SEND system for parents and carers.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Government-issued guide explaining the SEND system for parents and carers.</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://www.gov.uk/children-with-special-educational-needs/extra-SEN-help" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://www.gov.uk/children-with-special-educational-needs/extra-SEN-help" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               EHCP Information Pack
             </a>
-            <p className="text-gray-700 mt-1">Overview of EHCPs – what they are, how to apply, and your rights.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Overview of EHCPs – what they are, how to apply, and your rights.</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <a href="https://www.barnardossendiass.org.uk/liverpool-and-knowsley-sendiass/useful-contacts/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+            <a href="https://www.barnardossendiass.org.uk/liverpool-and-knowsley-sendiass/useful-contacts/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-lg text-brand-primary dark:text-brand-light">
               Useful Contacts
             </a>
-            <p className="text-gray-700 mt-1">Directory of local and national organizations that support families with SEND needs.</p>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">Directory of local and national organizations that support families with SEND needs.</p>
           </div>
         </div>
       </section>

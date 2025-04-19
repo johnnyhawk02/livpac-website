@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       <main className="flex-1 w-full max-w-4xl mx-auto p-4">
         <AnimatePresence mode="wait">
@@ -29,7 +29,7 @@ export default function App() {
           </Routes>
         </AnimatePresence>
       </main>
-      <footer className="bg-gray-100 text-center text-sm text-gray-600 py-4 mt-8">
+      <footer className="bg-gray-100 dark:bg-gray-900 text-center text-sm text-gray-600 dark:text-gray-400 py-4 mt-8 transition-colors duration-200">
         &copy; {new Date().getFullYear()} LivPaC (Liverpool Parent and Carers). All rights reserved.
       </footer>
     </div>

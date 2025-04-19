@@ -7,12 +7,12 @@ const galleryImages = [
   {
     src: robynImage,
     alt: "Robyn balancing on a wooden beam in a woodland play area",
-    caption: "Enjoying the outdoors at CAFT."
+    caption: "Adventure time at the Children's Adventure Farm Trust"
   },
   {
     src: singingHandsImage, // Add new image object
     alt: "Two adults in red Singing Hands t-shirts sitting with two children",
-    caption: "Fun with Singing Hands!"
+    caption: "Making music with Singing Hands"
   }
   // Add more image objects like the one above
 ];
@@ -20,21 +20,15 @@ const galleryImages = [
 export default function Gallery() {
   return (
     <main className="min-h-screen pb-8">
-      {/* Wrap content in a card div for consistency */}
-      <div className="card mt-8 mb-8">
-        {/* Combined Header Section */}
-        <section className="mb-10 text-center"> {/* Removed mt/px from section */}
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary mb-4 leading-tight tracking-tight">
-            Photo Gallery
-          </h1>
-          <p className="text-lg text-gray-700 leading-relaxed mx-auto">
-            Discover wonder-filled moments from LivPaC meetings, events, and activities. We cherish the meaningful connections made and stories shared within our community.
-          </p>
-        </section>
-        {/* End Header Section */}
+      <section className="card mt-8 mb-8 bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-colors duration-200">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-primary dark:text-brand-light mb-3 leading-tight tracking-tight">Photo Gallery</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium">
+          Welcome to our photo gallery showcasing moments from LivPaC events and activities. 
+          Here you'll find a collection of memories from our community gatherings.
+        </p>
 
         {/* Gallery Grid */}
-        <section> {/* Removed mb/px from section */}
+        <div className="mb-6">
           {galleryImages.length > 0 ? (
             <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
               {galleryImages.map((image, index) => (
@@ -45,7 +39,7 @@ export default function Gallery() {
                     className="w-full h-auto object-cover block rounded-lg"
                   />
                   {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg">
+                    <div className="absolute bottom-0 left-0 right-0 bg-brand-primary bg-opacity-80 dark:bg-opacity-90 p-2 opacity-100 transition-opacity duration-300 rounded-b-lg">
                       <p className="text-white text-center text-sm px-1">
                         {image.caption}
                       </p>
@@ -55,11 +49,24 @@ export default function Gallery() {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 italic text-center">More photos coming soon!</p>
+            <p className="text-gray-500 dark:text-gray-400 italic text-center">No photos available yet. Check back soon for updates.</p>
           )}
-        </section>
-        {/* End Gallery Grid */}
-      </div>
+        </div>
+        
+        {/* Call to Action Section */}
+        <div className="bg-brand-primary/10 dark:bg-brand-primary/20 rounded-lg p-4 mt-6">
+          <h2 className="text-lg font-semibold text-brand-primary dark:text-brand-light mb-2">Share Your Photos</h2>
+          <p className="text-base text-gray-600 dark:text-gray-300 mb-2">
+            If you have photos from our events that you'd like to share, we'd love to include them in our gallery.
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Please contact us to submit your photos and help our community album grow.
+          </p>
+        </div>
+      </section>
     </main>
   );
-} 
+}
+// EMERGENCY FIX
+// TESTING UPDATE
+// SUPER AWESOME GALLERY PAGE

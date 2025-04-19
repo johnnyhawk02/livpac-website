@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -13,7 +14,8 @@ module.exports = {
         'brand-magenta': '#D54D99', // Updated Magenta
       },
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        opensans: ['"Open Sans"', 'sans-serif'],
+        'varela-round': ['"Varela Round"', 'sans-serif'],
       },
     },
   },
